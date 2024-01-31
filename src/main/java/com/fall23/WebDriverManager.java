@@ -33,4 +33,7 @@ public class WebDriverManager {
     public static WebElement findByID (String id){
         return driver.findElement(By.id(id));
     }
+    public static WebElement findByClassName (String classname){
+        return driver.findElement(By.className(classname));
+    }
 }

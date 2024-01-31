@@ -7,6 +7,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
+import static com.fall23.WebDriverManager.findByClassName;
 import static com.fall23.WebDriverManager.openTheSite;
 
 public class ByClassName extends BaseTest {
@@ -14,7 +15,7 @@ public class ByClassName extends BaseTest {
     @Test
     void byClassNameTest() throws InterruptedException {
         openTheSite("https://demoqa.com/text-box");
-        WebElement submitBtn = driver.findElement(By.className("btn-primary"));
+        WebElement submitBtn = findByClassName("btn-primary");
         submitBtn.click();
         Thread.sleep(5000);
 
