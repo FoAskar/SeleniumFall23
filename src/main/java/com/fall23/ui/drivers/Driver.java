@@ -2,6 +2,7 @@ package com.fall23.ui.drivers;
 
 import com.fall23.ui.config.ConfigReader;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class Driver {
 
@@ -17,10 +18,12 @@ public class Driver {
                 case "chrome":
                     driver = ChromeWebDriver.loadChromeDriver();
                     break;
-                case "firefox":
-                    //TODO add firefox
+                case "edge":
+                    driver = EdgeWebDriver.loadEdgeDriver();
                     break;
-                //TODO add all drivers
+                case "firefox":
+                    driver = FireFoxWebDriver.loadFireFoxDriver();
+                    break;
                 default:
                     throw new IllegalArgumentException("You provided wrong Driver name");
             }
