@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ConfigReader {
 
 
-    private static Properties properties;
+    private static final Properties properties;
     private ConfigReader(){
         //Singleton ->(одиночный) подразумевает что данный класс будет в един.
         // экземпляре(нельзя будет создать его объект)

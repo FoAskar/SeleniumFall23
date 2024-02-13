@@ -10,15 +10,13 @@ import java.time.Duration;
 
 public class WebElementHelper {
 
-    public WebElementHelper waitForButtonToBeClickAble (WebElement element){
+    public void waitForButtonToBeClickAble (WebElement element){
         new WebDriverWait(Driver.getDriver(), Duration.ofSeconds(7))
                 .until(ExpectedConditions.elementToBeClickable(element));
-        return this;
     }
-    public WebElementHelper waitForElementToBeDisplayed(WebElement element){
+    public void waitForElementToBeDisplayed(WebElement element){
         new WebDriverWait(Driver.getDriver(),Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOf(element));
-        return this;
 
     }
     public WebElementHelper click(WebElement element){

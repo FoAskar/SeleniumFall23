@@ -11,8 +11,8 @@ import static com.fall23.demoqa.WebDriverManager.driver;
 public class FireFoxWebDriver {
 
     public static WebDriver loadFireFoxDriver(){
-        System.setProperty("webdriver.firefox.driver","src/main/resources/drivers/geckodriver.exe");
-        WebDriver geckodriver = new FirefoxDriver();
+        System.setProperty("webdriver.gecko.driver","src/main/resources/drivers/geckodriver.exe");
+        WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
         return driver;

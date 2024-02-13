@@ -1,8 +1,8 @@
 import com.fall23.ui.drivers.Driver;
 import com.fall23.ui.pages.RadioButtonPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
@@ -18,17 +18,26 @@ public class RadioButtonTest {
         driver = Driver.getDriver();
         radioButtonPage = new RadioButtonPage();
     }
+
+    @AfterClass
+    void closeResources(){
+        driver.close();
+        driver.quit();
+    }
     @Test
     void clickRadioButtons() throws InterruptedException {
-        driver.get("https://demoqa.com/radio-button");
-        radioButtonPage.clickYes();
-        String actualYes = driver.findElement(By.xpath("//span[contains(text(),'Yes')]")).getText();
+        radioButtonPage.openRBPage()
+                .clickYes()
+                .clickImpressive()
+                .clickNo();
+
+        String actualYes = radioButtonPage.getActualYesText();
         Assert.assertEquals(actualYes,"Yes");
-        radioButtonPage.clickImpressive();
-        String actualImpressive = driver.findElement(By.xpath("//span[contains(text(),'Impressive')]")).getText();
+
+        String actualImpressive = radioButtonPage.getActualImpressiveText();
         Assert.assertEquals(actualImpressive,"Impressive");
-        radioButtonPage.clickNo();
-        String actualNo = driver.findElement(By.xpath("//label[contains(text(),'No')]")).getText();
+
+        String actualNo = radioButtonPage.getActualNoText();
         Assert.assertEquals(actualNo,"No");
 
 

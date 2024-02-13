@@ -1,11 +1,11 @@
-import com.fall23.ui.config.ConfigReader;
 import com.fall23.ui.drivers.Driver;
 import com.fall23.ui.pages.TextBoxPage;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+
+import static org.testng.Assert.assertEquals;
 
 public class TextBoxTest {
 
@@ -18,24 +18,32 @@ public class TextBoxTest {
         textBoxPage = new TextBoxPage();
     }
 
+    @AfterClass
+    void closeResources (){
+        driver.close();
+        driver.quit();
+    }
+
+
     @Test
     void fillUpTheFormPositiveTest(){
-        driver.get("https://demoqa.com/text-box");
-        textBoxPage
+
+        textBoxPage.openTBPage()
                 .fillUpFullName("John Connor")
                 .fillUpEmail("john@gmail.com")
                 .fillUpCurrentAddress("Baker street 70")
                 .fillUpPermanentAddress("7 avenue")
                 .clickSubmitBtn();
 
-        String actualFullName = driver.findElement(By.id("name")).getText();
-        Assert.assertEquals(actualFullName,"Name:John Connor");
-        String actualEmail = driver.findElement(By.id("email")).getText();
-        Assert.assertEquals(actualEmail,"Email:john@gmail.com");
-        String actualCurrentAddress = driver.findElement(By.id("email")).getText();
-        Assert.assertEquals(actualCurrentAddress,"Current Address :Baker street 70");
-        String actualPermanentAddress = driver.findElement(By.id("email")).getText();
-        Assert.assertEquals(actualPermanentAddress,"Permananet Address :7 avenue");
+        String actualFullName = textBoxPage.getActualFullName();
+        assertEquals(actualFullName,"Name:John Connor");
+        String actualEmail = textBoxPage.getActualEmail();
+        assertEquals(actualEmail,"Email:john@gmail.com");
+        String actualCurrentAddressText =textBoxPage.getActualCurrentAddressText();
+        assertEquals(actualCurrentAddressText,"Current Address :Baker street 70");
+        String actualPermanentAddressText = textBoxPage.getActualPermanentAddressText();
+        assertEquals(actualPermanentAddressText,"Permananet Address :7 avenue");
+
 
 
     }
